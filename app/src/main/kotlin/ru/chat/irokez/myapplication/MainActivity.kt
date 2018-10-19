@@ -6,7 +6,7 @@ import android.os.Bundle
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setContentView(R.layout.constraint_layout)
+        setContentView(R.layout.register_fragment_layout)
         super.onCreate(savedInstanceState)
     }
 }
