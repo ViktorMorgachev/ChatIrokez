@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:src="@drawable/chat_500x500"
+        android:elevation="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/et_nick"
         app:layout_constraintBottom_toTopOf="@id/et_nick"
         app:layout_constraintLeft_toLeftOf="parent"

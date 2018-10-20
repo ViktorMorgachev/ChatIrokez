@@ -1,5 +1,6 @@
 package ru.chat.irokez.myapplication.ui;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,8 +16,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.lang.reflect.Field;
+
 import ru.chat.irokez.myapplication.R;
-import ru.chat.irokez.myapplication.activities.ChatActivity;
+import trikita.log.Log;
 
 public class RegisterFragment extends Fragment implements View.OnClickListener {
 
@@ -34,6 +37,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
 
         mButton.setOnClickListener(this);
+        Log.usePrinter(Log.ANDROID, true).usePrinter(Log.SYSTEM, false);
         return view;
     }
 
@@ -41,7 +45,33 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         if (!mEditText.getText().toString().equals("")) {
             mSharedPreferences.edit().putString("USER_NICK", mEditText.getText().toString());
-            startActivity(new Intent(getContext(), ChatActivity.class));
+       //     startActivity(new Intent(getContext(), ChatActivity.class));
         } else Toast.makeText(getContext(), "Ваш ник разве пустой?", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
+
+
+        Log.e("Отсоеденили!!!!");
+
+        /*try {
+            Field childFragmentManager = Fragment.class.getDeclaredField("mChildFragmentManager");
+            childFragmentManager.setAccessible(true);
+            childFragmentManager.set(this, null);
+
+        } catch (NoSuchFieldException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }*/
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        Log.e("Присоеденили!!!!");
+        super.onAttach(context);
     }
 }
