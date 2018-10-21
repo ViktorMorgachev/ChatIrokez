@@ -19,6 +19,7 @@ import android.widget.Toast;
 import java.lang.reflect.Field;
 
 import ru.chat.irokez.myapplication.R;
+import ru.chat.irokez.myapplication.activities.ChatActivity;
 import trikita.log.Log;
 
 public class RegisterFragment extends Fragment implements View.OnClickListener {
@@ -44,8 +45,8 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (!mEditText.getText().toString().equals("")) {
-            mSharedPreferences.edit().putString("USER_NICK", mEditText.getText().toString());
-       //     startActivity(new Intent(getContext(), ChatActivity.class));
+            mSharedPreferences.edit().putString("USER_NICK", mEditText.getText().toString()).commit();
+            startActivity(new Intent(getContext(), ChatActivity.class));
         } else Toast.makeText(getContext(), "Ваш ник разве пустой?", Toast.LENGTH_SHORT).show();
     }
 
