@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import ru.chat.irokez.myapplication.activities.ChatActivity;
+import ru.chat.irokez.myapplication.logic.ChatService;
 import ru.chat.irokez.myapplication.ui.RegisterFragment;
 import trikita.log.Log;
 
@@ -29,28 +30,20 @@ public class MainActivityJava extends AppCompatActivity {
                         .commit();
             }
         }
-        // Запуск активнсти самого чата
+        // Запуск активнсти самого чата и сервиса (сервера принимающего запросы от клиентов)
         else {
+            startService(new Intent(this, ChatService.class));
             startActivity(new Intent(this, ChatActivity.class));
         }
 
-
-
-
-
     }
 
     @Override
-    protected void onStart() {
-        Log.d("onStart " + this.getClass().getCanonicalName().toString());
-        super.onStart();
+    protected void onDestroy() {
+        super.onDestroy();
+       stopService(new Intent(this, ChatService.class));
     }
 
-    @Override
-    protected void onResume() {
-        Log.d("onResume " + this.getClass().getCanonicalName().toString());
-        super.onResume();
-    }
 
     @Override
     protected void onPause() {
@@ -61,7 +54,7 @@ public class MainActivityJava extends AppCompatActivity {
     private boolean isHasUser() {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String nick = mSharedPreferences.getString("USER_NICK", "");
-        Log.d("User's nick" + nick + this.getClass().getCanonicalName().toString());
+        Log.d("User's nick is " + nick + this.getClass().getCanonicalName().toString());
         return !(nick == "");
 
     }

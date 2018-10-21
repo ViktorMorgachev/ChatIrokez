@@ -47,6 +47,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         if (!mEditText.getText().toString().equals("")) {
             mSharedPreferences.edit().putString("USER_NICK", mEditText.getText().toString()).commit();
             startActivity(new Intent(getContext(), ChatActivity.class));
+            Toast.makeText(getContext(), "Пользователь создан успешно", Toast.LENGTH_LONG).show();
         } else Toast.makeText(getContext(), "Ваш ник разве пустой?", Toast.LENGTH_SHORT).show();
     }
 
