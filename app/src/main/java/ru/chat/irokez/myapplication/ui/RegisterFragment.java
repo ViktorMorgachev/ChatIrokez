@@ -37,7 +37,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
 
         mButton.setOnClickListener(this);
-        Log.usePrinter(Log.ANDROID, true).usePrinter(Log.SYSTEM, false);
+
         return view;
     }
 

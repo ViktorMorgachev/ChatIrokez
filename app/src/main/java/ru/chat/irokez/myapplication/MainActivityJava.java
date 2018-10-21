@@ -20,16 +20,18 @@ public class MainActivityJava extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.simple_fragment_container);
+        Log.d("onCreate " + this.getClass().getCanonicalName().toString());
 
-       if(savedInstanceState == null){
-           getSupportFragmentManager().beginTransaction()
-                   .add(R.id.main_fragment_container, new RegisterFragment())
-                   .commit();
-       }
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.main_fragment_container, new RegisterFragment())
+                    .commit();
+        }
 
 
+        //   Log.usePrinter(Log.ANDROID, true).usePrinter(Log.SYSTEM, false);
 
        /* // Проверка регистрировался ли пользователь?
         if (checkUserInfo() == true) {
@@ -44,7 +46,24 @@ public class MainActivityJava extends AppCompatActivity {
         else {
             startActivity(new Intent(this, ChatActivity.class));
         }*/
-        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onStart() {
+        Log.d("onStart " + this.getClass().getCanonicalName().toString());
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        Log.d("onResume " + this.getClass().getCanonicalName().toString());
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        Log.d("onPause " + this.getClass().getCanonicalName().toString());
+        super.onPause();
     }
 
     private boolean checkUserInfo() {
